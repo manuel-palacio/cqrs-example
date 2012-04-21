@@ -24,7 +24,6 @@ public class AccountCommandHandler {
         TransferFundsRequest transferFundsRequest = command.getTransferRequest();
         for (TransactionLeg transactionLeg : transferFundsRequest.getLegs()) {
             Account account = repository.load(new StringAggregateIdentifier(transactionLeg.getAccountRef()));
-
             account.updateBalance(transactionLeg.getAmount());
         }
     }
