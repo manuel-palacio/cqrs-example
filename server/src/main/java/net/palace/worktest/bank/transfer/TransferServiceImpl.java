@@ -29,9 +29,10 @@ public class TransferServiceImpl implements TransferService {
     public void transferFunds(TransferFundsRequest transferRequest) throws InsufficientFundsException,
             AccountNotFoundException, AccountClosedException {
 
-        commandBus.dispatch(new UpdateAccountBalanceCommand(transferRequest), new CommandCallback<Object>() {
+        commandBus.dispatch(new UpdateAccountBalanceCommand(transferRequest),
+                new CommandCallback<UpdateAccountBalanceCommand>() {
             @Override
-            public void onSuccess(Object o) {
+            public void onSuccess(UpdateAccountBalanceCommand o) {
             }
 
             @Override

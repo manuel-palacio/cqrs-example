@@ -5,6 +5,7 @@ import org.axonframework.domain.DomainEvent;
 
 
 public class TransferCreatedEvent extends DomainEvent {
+
     private TransferFundsRequest transferFundsRequest;
 
     public TransferCreatedEvent(TransferFundsRequest transferFundsRequest) {
