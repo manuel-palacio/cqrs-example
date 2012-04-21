@@ -2,7 +2,7 @@ package net.palace.worktest.bank.transfer;
 
 import com.hazelcast.core.MultiMap;
 import net.palace.worktest.bank.*;
-import net.palace.worktest.bank.account.command.UpdateBalanceCommand;
+import net.palace.worktest.bank.account.command.UpdateAccountBalanceCommand;
 import net.palace.worktest.bank.transfer.command.TransferCommand;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.CommandCallback;
@@ -29,7 +29,7 @@ public class TransferServiceImpl implements TransferService {
     public void transferFunds(TransferFundsRequest transferRequest) throws InsufficientFundsException,
             AccountNotFoundException, AccountClosedException {
 
-        commandBus.dispatch(new UpdateBalanceCommand(transferRequest), new CommandCallback<Object>() {
+        commandBus.dispatch(new UpdateAccountBalanceCommand(transferRequest), new CommandCallback<Object>() {
             @Override
             public void onSuccess(Object o) {
             }
