@@ -31,7 +31,7 @@ public class TransferServiceImpl implements TransferService {
         try {
             commandTemplate.sendAndWait(new UpdateAccountBalanceCommand(transferRequest));
         } catch (InterruptedException e) {
-            //ignore
+            throw new InfrastructureException(e);
         } catch (AggregateNotFoundException e) {
             throw new AccountNotFoundException();
         }
