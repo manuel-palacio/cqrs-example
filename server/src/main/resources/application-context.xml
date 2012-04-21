@@ -9,13 +9,13 @@
 
     <!-- Automatically find any command and event handlers in our application -->
 
-    <ctx:component-scan base-package="net.palace.worktest.bank"/>
+    <ctx:component-scan base-package="net.palace.cqrs.bank"/>
 
     <!-- Axon infrastructure -->
 
     <axon:annotation-config/>
 
-    <axon:event-sourcing-repository id="orderRepository" aggregate-type="net.palace.worktest.bank.account.command.Account"/>
+    <axon:event-sourcing-repository id="orderRepository" aggregate-type="net.palace.cqrs.bank.account.command.Account"/>
 
     <axon:jpa-event-store id="eventStore"/>
 

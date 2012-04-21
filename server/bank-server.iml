@@ -14,7 +14,7 @@
           <file>file://$MODULE_DIR$/src/main/resources/application-context.xml</file>
         </fileset>
         <fileset id="fileset2" name="Annotation Config Application Context" removed="false" type="annoContext">
-          <file>file://$MODULE_DIR$/src/main/java/net/palace/worktest/bank/config/ApplicationConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/net/palace/cqrs/bank/config/ApplicationConfig.java</file>
         </fileset>
       </configuration>
     </facet>
