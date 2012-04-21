@@ -5,7 +5,7 @@ import net.palace.worktest.bank.AccountNotFoundException;
 import net.palace.worktest.bank.AccountService;
 import net.palace.worktest.bank.Money;
 import net.palace.worktest.bank.account.command.CreateAccountCommand;
-import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.template.CommandTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private CommandBus commandBus;
+    private CommandTemplate commandTemplate;
 
     @Resource(name = "accounts")
     private Map<String, Money> accounts;
@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void createAccount(String accountRef, Money amount) {
-        commandBus.dispatch(new CreateAccountCommand(accountRef, amount));
+        commandTemplate.send(new CreateAccountCommand(accountRef, amount));
     }
 
     @Override

@@ -4,8 +4,7 @@ import com.hazelcast.core.MultiMap;
 import net.palace.worktest.bank.*;
 import net.palace.worktest.bank.account.command.UpdateAccountBalanceCommand;
 import net.palace.worktest.bank.transfer.command.TransferCommand;
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.commandhandling.CommandCallback;
+import org.axonframework.commandhandling.template.CommandTemplate;
 import org.axonframework.repository.AggregateNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class TransferServiceImpl implements TransferService {
 
 
     @Autowired
-    private CommandBus commandBus;
+    private CommandTemplate commandTemplate;
 
     @Resource(name = "transactions")
     private MultiMap<String, Transaction> transactions;
@@ -29,28 +28,15 @@ public class TransferServiceImpl implements TransferService {
     public void transferFunds(TransferFundsRequest transferRequest) throws InsufficientFundsException,
             AccountNotFoundException, AccountClosedException {
 
-        commandBus.dispatch(new UpdateAccountBalanceCommand(transferRequest),
-                new CommandCallback<UpdateAccountBalanceCommand>() {
-            @Override
-            public void onSuccess(UpdateAccountBalanceCommand o) {
-            }
+        try {
+            commandTemplate.sendAndWait(new UpdateAccountBalanceCommand(transferRequest));
+        } catch (InterruptedException e) {
+            //ignore
+        } catch (AggregateNotFoundException e) {
+            throw new AccountNotFoundException();
+        }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                if (throwable instanceof AggregateNotFoundException) {
-                    throw new AccountNotFoundException();
-                }
-                if (throwable instanceof InsufficientFundsException) {
-                    throw (InsufficientFundsException) throwable;
-                }
-
-                if (throwable instanceof IllegalTransferRequestException) {
-                    throw (IllegalTransferRequestException) throwable;
-                }
-            }
-        });
-
-        commandBus.dispatch(new TransferCommand(transferRequest));
+        commandTemplate.send(new TransferCommand(transferRequest));
     }
 
 

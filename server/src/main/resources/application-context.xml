@@ -27,6 +27,11 @@
         	</axon:interceptors>
     </axon:command-bus>
 
+
+    <bean class="org.axonframework.commandhandling.template.CommandTemplate">
+        <constructor-arg ref="commandBus"/>
+    </bean>
+
     <bean id="interceptor-zero" class="org.axonframework.commandhandling.interceptors.SpringTransactionalInterceptor">
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
