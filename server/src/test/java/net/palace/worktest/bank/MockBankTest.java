@@ -1,22 +1,20 @@
 package net.palace.worktest.bank;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import junit.framework.Assert;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import static net.palace.worktest.bank.MoneyUtils.toMoney;
 
 /**
  * Simple mock unit test demonstrating basic functionality of the bank system.
  *
- * @author Unibet
  * @version 1.0
  */
 public class MockBankTest {

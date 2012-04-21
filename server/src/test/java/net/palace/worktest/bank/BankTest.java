@@ -8,13 +8,7 @@ import java.util.List;
 
 import static net.palace.worktest.bank.MoneyUtils.toMoney;
 
-/**
- * Main integration test demonstrating the functionality of the bank system. In order to qualify for
- * submitting the worktest solution this test must pass without failures.
- *
- * @author Unibet
- * @version 1.0
- */
+
 public class BankTest {
     static final String SAVINGS_ACCOUNT_1 = "MyAccounts:A:EUR";
 

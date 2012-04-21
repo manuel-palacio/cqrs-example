@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
  * on {@link Money} objects. All money objects in a monetary transaction
  * must have the same currency.
  *
- * @author Unibet
  * @version 1.0
  */
 public abstract class MoneyUtils {
