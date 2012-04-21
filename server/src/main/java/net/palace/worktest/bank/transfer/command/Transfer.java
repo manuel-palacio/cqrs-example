@@ -35,16 +35,4 @@ public class Transfer extends AbstractAnnotatedAggregateRoot {
         this.bookingDate = transferFundsRequest.getBookingDate();
         this.legs = transferFundsRequest.getLegs();
     }
-
-    public String getTransactionRef() {
-        return transactionRef;
-    }
-
-    public Date getBookingDate() {
-        return bookingDate;
-    }
-
-    public List<TransactionLeg> getLegs() {
-        return legs;
-    }
 }
