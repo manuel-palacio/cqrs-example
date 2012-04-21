@@ -11,10 +11,10 @@ import java.util.Map;
 
 
 @Component
-public class AccountQueryComponent {
+public class AccountEventHandler {
 
     @Resource(name = "accounts")
-    Map<String, Money> accounts;
+    private Map<String, Money> accounts;
 
 
     @EventHandler

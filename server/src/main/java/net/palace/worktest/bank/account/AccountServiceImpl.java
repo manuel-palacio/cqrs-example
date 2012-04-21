@@ -19,7 +19,7 @@ public class AccountServiceImpl implements AccountService {
     private CommandBus commandBus;
 
     @Resource(name = "accounts")
-    Map<String, Money> accounts;
+    private Map<String, Money> accounts;
 
 
     @Override

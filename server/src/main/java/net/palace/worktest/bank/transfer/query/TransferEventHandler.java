@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import static ch.lambdaj.Lambda.*;
 
 @Component
-public class TransferQueryComponent {
+public class TransferEventHandler {
 
     @Resource(name = "transactions")
     MultiMap<String, Transaction> transactions;
