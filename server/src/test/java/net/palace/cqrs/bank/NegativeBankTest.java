@@ -2,6 +2,7 @@ package net.palace.cqrs.bank;
 
 
 import net.palace.cqrs.bank.config.ApplicationConfig;
+import net.palace.cqrs.bank.config.QueryModelConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import static junit.framework.Assert.assertTrue;
 import static net.palace.cqrs.bank.MoneyUtils.toMoney;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class}, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = {ApplicationConfig.class, QueryModelConfig.class}, loader = AnnotationConfigContextLoader.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class NegativeBankTest {
 
