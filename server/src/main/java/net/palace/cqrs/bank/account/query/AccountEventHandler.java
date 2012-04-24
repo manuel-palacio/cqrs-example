@@ -26,6 +26,4 @@ public class AccountEventHandler {
     public void onAccountBalanceUpdated(AccountBalanceUpdatedEvent accountBalanceUpdatedEvent) {
         accounts.put(accountBalanceUpdatedEvent.getAccountRef(), accountBalanceUpdatedEvent.getBalance());
     }
-
-
 }

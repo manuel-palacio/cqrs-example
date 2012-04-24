@@ -4,13 +4,11 @@ package net.palace.cqrs.bank.account;
 import net.palace.cqrs.bank.AccountNotFoundException;
 import net.palace.cqrs.bank.AccountService;
 import net.palace.cqrs.bank.Money;
+import net.palace.cqrs.bank.ReadModelFacade;
 import net.palace.cqrs.bank.account.command.CreateAccountCommand;
 import org.axonframework.commandhandling.template.CommandTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
-import java.util.Map;
 
 @Component
 public class AccountServiceImpl implements AccountService {
@@ -18,8 +16,8 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private CommandTemplate commandTemplate;
 
-    @Resource(name = "accounts")
-    private Map<String, Money> accounts;
+    @Autowired
+    ReadModelFacade readModelFacade;
 
 
     @Override
@@ -29,6 +27,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Money getBalance(String accountRef) throws AccountNotFoundException {
-        return accounts.get(accountRef);
+        return readModelFacade.getAccountBalance(accountRef);
     }
 }

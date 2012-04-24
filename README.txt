@@ -1,4 +1,4 @@
-Sample Java project showcasing the axon framework (http://www.axonframework.org/)
+Sample Java project that simulates money transfers using the axon framework (http://www.axonframework.org/)
 
 The axon framework supports the developing of applications using the ideas in CQRS (Command Query Responsiblity Segregation)
 
