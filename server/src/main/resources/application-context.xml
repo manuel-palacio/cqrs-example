@@ -15,7 +15,9 @@
 
     <axon:annotation-config/>
 
-    <axon:event-sourcing-repository id="orderRepository" aggregate-type="net.palace.cqrs.bank.account.command.Account"/>
+    <axon:event-sourcing-repository id="accountRepository" aggregate-type="net.palace.cqrs.bank.account.command.Account"/>
+
+    <axon:event-sourcing-repository id="transferRepository" aggregate-type="net.palace.cqrs.bank.transfer.command.Transfer"/>
 
     <axon:jpa-event-store id="eventStore"/>
 

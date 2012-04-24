@@ -5,14 +5,13 @@ import net.palace.cqrs.bank.TransferFundsRequest;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingRepository;
-import org.axonframework.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccountCommandHandler {
 
-    private Repository<Account> repository;
+    private EventSourcingRepository<Account> repository;
 
     @CommandHandler
     public void createAccount(CreateAccountCommand command) {
@@ -20,7 +19,7 @@ public class AccountCommandHandler {
     }
 
     @CommandHandler
-    public void updateBalance(UpdateAccountBalanceCommand command) {
+    public void updateBalances(UpdateAccountsBalanceCommand command) {
         TransferFundsRequest transferFundsRequest = command.getTransferRequest();
         for (TransactionLeg transactionLeg : transferFundsRequest.getLegs()) {
             Account account = repository.load(new StringAggregateIdentifier(transactionLeg.getAccountRef()));
@@ -29,7 +28,7 @@ public class AccountCommandHandler {
     }
 
     @Autowired
-    public void setOrderRepository(EventSourcingRepository<Account> genericRepository) {
-        this.repository = genericRepository;
+    public void setAccountRepository(EventSourcingRepository<Account> accountRepository) {
+        this.repository = accountRepository;
     }
 }

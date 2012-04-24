@@ -20,7 +20,7 @@ public class AccountCommandHandlerTest {
        public void setUp() throws Exception {
            fixture = Fixtures.newGivenWhenThenFixture();
            AccountCommandHandler commandHandler = new AccountCommandHandler();
-           commandHandler.setOrderRepository(fixture.createGenericRepository(Account.class));
+           commandHandler.setAccountRepository(fixture.createGenericRepository(Account.class));
            fixture.registerAnnotatedCommandHandler(commandHandler);
        }
 
