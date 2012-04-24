@@ -11,10 +11,10 @@ import static ch.lambdaj.Lambda.collect;
 import static ch.lambdaj.Lambda.on;
 import static ch.lambdaj.Lambda.sum;
 
-public class UpdateAccountsBalanceCommand {
+public class UpdateAccountBalanceCommand {
     private TransferFundsRequest transferRequest;
 
-    public UpdateAccountsBalanceCommand(TransferFundsRequest transferRequest) {
+    public UpdateAccountBalanceCommand(TransferFundsRequest transferRequest) {
 
         this.transferRequest = transferRequest;
 

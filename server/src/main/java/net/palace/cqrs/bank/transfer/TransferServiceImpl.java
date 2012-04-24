@@ -1,7 +1,7 @@
 package net.palace.cqrs.bank.transfer;
 
 import net.palace.cqrs.bank.*;
-import net.palace.cqrs.bank.account.command.UpdateAccountsBalanceCommand;
+import net.palace.cqrs.bank.account.command.UpdateAccountBalanceCommand;
 import net.palace.cqrs.bank.transfer.command.TransferCommand;
 import org.axonframework.commandhandling.template.CommandTemplate;
 import org.axonframework.repository.AggregateNotFoundException;
@@ -29,7 +29,7 @@ public class TransferServiceImpl implements TransferService {
 
         try {
             //first try to update all account balances
-            commandTemplate.sendAndWait(new UpdateAccountsBalanceCommand(transferRequest));
+            commandTemplate.sendAndWait(new UpdateAccountBalanceCommand(transferRequest));
         } catch (InterruptedException e) {
             throw new InfrastructureException(e);
         } catch (AggregateNotFoundException e) {

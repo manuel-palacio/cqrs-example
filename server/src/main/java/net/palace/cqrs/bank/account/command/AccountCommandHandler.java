@@ -19,7 +19,7 @@ public class AccountCommandHandler {
     }
 
     @CommandHandler
-    public void updateBalances(UpdateAccountsBalanceCommand command) {
+    public void updateAccountBalance(UpdateAccountBalanceCommand command) {
         TransferFundsRequest transferFundsRequest = command.getTransferRequest();
         for (TransactionLeg transactionLeg : transferFundsRequest.getLegs()) {
             Account account = repository.load(new StringAggregateIdentifier(transactionLeg.getAccountRef()));
