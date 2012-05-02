@@ -29,7 +29,6 @@
         <axon:interceptors>
             <ref local="interceptor-validation"/>
             <ref local="interceptor-tx"/>
-
         </axon:interceptors>
     </axon:command-bus>
 
@@ -42,8 +41,7 @@
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
 
-    <bean id="interceptor-validation" class="org.axonframework.commandhandling.interceptors.BeanValidationInterceptor">
-        </bean>
+    <bean id="interceptor-validation" class="org.axonframework.commandhandling.interceptors.BeanValidationInterceptor"/>
 
     <!-- Persistence configuration -->
 
