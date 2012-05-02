@@ -7,9 +7,7 @@ import net.palace.cqrs.bank.TransferFundsRequest;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static ch.lambdaj.Lambda.collect;
-import static ch.lambdaj.Lambda.on;
-import static ch.lambdaj.Lambda.sum;
+import static ch.lambdaj.Lambda.*;
 
 public class UpdateAccountBalanceCommand {
     private TransferFundsRequest transferRequest;

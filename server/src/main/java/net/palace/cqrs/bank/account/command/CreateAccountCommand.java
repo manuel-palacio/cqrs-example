@@ -4,8 +4,9 @@ import net.palace.cqrs.bank.Money;
 
 public class CreateAccountCommand {
 
-    String accountRef;
-    Money amount;
+    private String accountRef;
+
+    private Money amount;
 
     public CreateAccountCommand(String accountRef, Money amount) {
         this.accountRef = accountRef;

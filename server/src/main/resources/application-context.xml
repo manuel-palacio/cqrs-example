@@ -15,9 +15,11 @@
 
     <axon:annotation-config/>
 
-    <axon:event-sourcing-repository id="accountRepository" aggregate-type="net.palace.cqrs.bank.account.command.Account"/>
+    <axon:event-sourcing-repository id="accountRepository"
+                                    aggregate-type="net.palace.cqrs.bank.account.command.Account"/>
 
-    <axon:event-sourcing-repository id="transferRepository" aggregate-type="net.palace.cqrs.bank.transfer.command.Transfer"/>
+    <axon:event-sourcing-repository id="transferRepository"
+                                    aggregate-type="net.palace.cqrs.bank.transfer.command.Transfer"/>
 
     <axon:jpa-event-store id="eventStore"/>
 
@@ -25,8 +27,10 @@
 
     <axon:command-bus id="commandBus">
         <axon:interceptors>
-        		<ref local="interceptor-zero"/>
-        	</axon:interceptors>
+            <ref local="interceptor-validation"/>
+            <ref local="interceptor-tx"/>
+
+        </axon:interceptors>
     </axon:command-bus>
 
 
@@ -34,9 +38,12 @@
         <constructor-arg ref="commandBus"/>
     </bean>
 
-    <bean id="interceptor-zero" class="org.axonframework.commandhandling.interceptors.SpringTransactionalInterceptor">
+    <bean id="interceptor-tx" class="org.axonframework.commandhandling.interceptors.SpringTransactionalInterceptor">
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
+
+    <bean id="interceptor-validation" class="org.axonframework.commandhandling.interceptors.BeanValidationInterceptor">
+        </bean>
 
     <!-- Persistence configuration -->
 
@@ -53,7 +60,7 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
-                <entry key="hibernate.hbm2ddl.auto" value="create-drop" />
+                <entry key="hibernate.hbm2ddl.auto" value="create-drop"/>
             </map>
         </property>
     </bean>
